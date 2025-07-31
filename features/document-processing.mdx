@@ -1,0 +1,223 @@
+---
+title: "PDF Form Processing"
+description: "Automatically fill PDF forms and extract information using advanced inference graphs and Adobe Acrobat Pro integration"
+---
+
+## PDF Form Processing
+
+Transform how you work with PDF forms. Ignotus can automatically fill PDF forms, extract information, and process documents using advanced inference graphs and Adobe Acrobat Pro integration.
+
+### What is PDF Form Processing?
+
+PDF Form Processing is Ignotus's advanced feature for handling PDF forms and documents. Using inference graphs and Adobe Acrobat Pro integration, Ignotus can intelligently extract information, fill forms automatically, and process complex document workflows.
+
+### Key Features
+
+<Columns cols={2}>
+  <Card
+    title="Intelligent Form Filling"
+    icon="file-pdf"
+  >
+    Automatically fill PDF forms using inference graphs and user data
+  </Card>
+  <Card
+    title="Form Field Extraction"
+    icon="magnifying-glass"
+  >
+    Extract form field structure and types from any PDF
+  </Card>
+  <Card
+    title="Text Content Extraction"
+    icon="file-text"
+  >
+    Extract and analyze text content from PDF documents
+  </Card>
+  <Card
+    title="Dynamic Workflows"
+    icon="workflow"
+  >
+    Use inference graphs for complex PDF processing tasks
+  </Card>
+</Columns>
+
+### How PDF Processing Works
+
+#### 1. Context Detection
+When you open a PDF with form fields, Ignotus automatically:
+- **Detects form fields** and their types
+- **Analyzes document content** for context
+- **Creates relevant pill actions** for the current PDF
+- **Prepares inference graph workflows** for processing
+
+#### 2. Pill Actions
+Based on the PDF context, Ignotus provides these actions:
+
+**"Fill form" Pill** - Dynamic LLM-Driven Workflow:
+- **Zero Configuration**: Starts with empty graph - LLM creates everything
+- **Intelligent Data Extraction**: Uses user profile and document context
+- **Smart Field Mapping**: Matches user data to form fields automatically
+- **Real-time Feedback**: Shows each step as the workflow executes
+
+**"Clear form" Pill** - Direct AppleScript Execution:
+- **Instant Clearing**: Removes all form field content
+- **Field Type Aware**: Handles different field types properly
+- **No LLM Required**: Fast, direct execution
+
+**"Extract info" Pill** - Information Extraction:
+- **Content Analysis**: Extracts key information from the document
+- **Structured Output**: Provides organized data extraction
+- **Context Preservation**: Maintains document context
+
+### Form Field Types Supported
+
+Ignotus supports all standard PDF form field types:
+
+- **Text Fields**: Single-line and multi-line text input
+- **Checkboxes**: Boolean true/false selections
+- **Radio Buttons**: Single selection from multiple options
+- **Combo Boxes**: Dropdown selection with custom options
+- **List Boxes**: Multi-selection from list of options
+- **Signature Fields**: Digital signature placement
+- **File Attachments**: File upload fields
+
+### Advanced Processing Features
+
+#### Intelligent Data Mapping
+Ignotus can map user data to form fields:
+- **Personal Information**: Name, address, phone, email
+- **Company Details**: Company name, position, department
+- **Financial Data**: Account numbers, amounts, dates
+- **Custom Data**: Any structured information from your profile
+
+#### Context-Aware Filling
+The system considers:
+- **Document Type**: Tax forms, applications, contracts, etc.
+- **Field Context**: Surrounding text and labels
+- **User Preferences**: Previously filled similar forms
+- **Validation Rules**: Field requirements and constraints
+
+#### Error Handling
+- **Field Validation**: Ensures data matches field requirements
+- **Type Checking**: Validates data types for each field
+- **Fallback Options**: Provides alternatives when exact matches fail
+- **User Feedback**: Clear error messages and suggestions
+
+### Integration with Adobe Acrobat Pro
+
+#### AppleScript Integration
+Ignotus uses AppleScript to control Adobe Acrobat Pro:
+- **Real PDF Operations**: Direct manipulation of PDF documents
+- **Field Access**: Read and write form field values
+- **Document Control**: Open, save, and manage PDF files
+- **Error Handling**: Robust error handling for PDF operations
+
+#### Required Setup
+1. **Adobe Acrobat Pro**: Must be installed and accessible
+2. **Permissions**: Grant Ignotus access to control Acrobat Pro
+3. **Document Focus**: Ensure the target PDF is the front document
+4. **Field Detection**: Automatic detection of form fields
+
+### Inference Graph Workflow Example
+
+When you click "Fill form", the inference graph creates this workflow:
+
+#### Step 1: Data Extraction
+```swift
+// Extract form structure
+acrobat_current_pdf_form_field_extractor
+// Extract document content
+acrobat_current_pdf_text_extractor
+// Get user information
+get_user_personal_details
+```
+
+#### Step 2: Processing
+```swift
+// LLM processes all data
+llm_query {
+    model: "pro",
+    input: [form_fields, document_content, user_details],
+    output_schema: form_filling_schema
+}
+```
+
+#### Step 3: Form Filling
+```swift
+// Fill the form with processed data
+acrobat_current_pdf_form_field_filler {
+    input: structured_form_data
+}
+```
+
+### Real-time Feedback
+
+Each step provides visual feedback:
+- **👁️ Eye Icon**: Data extraction operations
+- **🧠 Brain Icon**: LLM processing and analysis
+- **✏️ Pencil Icon**: Form filling operations
+- **Action Descriptions**: Real-time status updates
+
+### Privacy & Security
+
+<Note>
+PDF processing happens locally on your device. Your PDF data is only sent to AI models if you explicitly choose cloud-based analysis, and you can review all data before sharing.
+</Note>
+
+### Customization Options
+
+#### Processing Accuracy
+- **Fast**: Quick processing with basic accuracy
+- **Standard**: Balanced speed and accuracy
+- **High**: Maximum accuracy with detailed processing
+
+#### Model Selection
+- **Light**: Fast processing for simple forms
+- **Medium**: Balanced approach for most forms
+- **Pro**: High accuracy for complex forms
+
+#### Field Preferences
+- **Auto-fill**: Automatically fill all available fields
+- **Selective**: Choose which fields to fill
+- **Prompt**: Ask for confirmation before filling
+
+### Troubleshooting
+
+**Adobe Acrobat Pro not responding?**
+- Ensure Acrobat Pro is installed and running
+- Check that the PDF is open in Acrobat Pro
+- Verify Ignotus has permission to control Acrobat Pro
+- Restart both applications if needed
+
+**Form fields not detected?**
+- Make sure the PDF has actual form fields (not just text)
+- Check that the PDF is not password-protected
+- Ensure the document is properly loaded in Acrobat Pro
+- Try refreshing the document or reopening it
+
+**Filling errors?**
+- Check that form fields are not locked or protected
+- Verify user data is available and complete
+- Review field type compatibility
+- Check for special characters or formatting issues
+
+**Performance issues?**
+- Use lighter models for faster processing
+- Close other resource-intensive applications
+- Check available disk space
+- Restart Ignotus if needed
+
+<Card
+  title="Inference Graphs"
+  icon="workflow"
+  href="/features/inference-graphs"
+>
+  Learn how inference graphs power advanced PDF processing
+</Card>
+
+<Card
+  title="Knowledge Management"
+  icon="database"
+  href="/features/knowledge-management"
+>
+  Discover how to build knowledge bases for better form processing
+</Card> 

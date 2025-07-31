@@ -1,0 +1,215 @@
+---
+title: "Inference Graphs"
+description: "Dynamic DAG execution engine for complex, LLM-guided workflows with real-time feedback"
+---
+
+## Inference Graphs
+
+Ignotus's Inference Graph system is a powerful DAG (Directed Acyclic Graph) execution engine designed to help users accomplish complex tasks through step-by-step, LLM-guided workflows.
+
+### What are Inference Graphs?
+
+Inference Graphs are dynamic workflows that can evolve at runtime based on LLM decisions. The system combines graph-based computation with dynamic node generation to create adaptive, intelligent workflows that can handle complex tasks automatically.
+
+### Key Features
+
+<Columns cols={2}>
+  <Card
+    title="Dynamic Generation"
+    icon="workflow"
+  >
+    Graphs evolve at runtime based on LLM decisions and current state
+  </Card>
+  <Card
+    title="Step-by-Step Execution"
+    icon="play"
+  >
+    Execute graphs incrementally with full control and visibility
+  </Card>
+  <Card
+    title="Live Output Detection"
+    icon="eye"
+  >
+    Automatically identify outputs that need further processing
+  </Card>
+  <Card
+    title="Real-time Feedback"
+    icon="message-square"
+  >
+    Visual feedback showing what each operator is doing
+  </Card>
+</Columns>
+
+### How Inference Graphs Work
+
+#### 1. Dynamic Graph Generation
+The LLM creates workflows automatically based on your request:
+
+1. **Initial Prompt**: You provide a simple request like "fill the PDF form"
+2. **LLM Analysis**: The system determines what operations are needed
+3. **Node Creation**: LLM creates initial nodes (extractors, processors, etc.)
+4. **Execution**: Nodes execute and produce outputs
+5. **Iterative Generation**: LLM creates new nodes based on current outputs
+6. **Completion**: Workflow completes when no more processing is needed
+
+#### 2. Operator Types
+
+**Source Operators** (No Inputs):
+- `const_text`: Provides constant text output
+- `get_user_personal_details`: Retrieves user profile information
+- `acrobat_current_pdf_text_extractor`: Extracts text from current PDF
+- `acrobat_current_pdf_form_field_extractor`: Extracts form fields from PDF
+- `get_all_available_window_descs`: Gets all open window information
+
+**Processing Operators**:
+- `llm_query`: Performs LLM queries with various models
+- `text_prompt`: Prompts user for input
+- `graph_node_generator`: Generates new nodes based on current state
+
+**Sink Operators** (No Outputs):
+- `acrobat_current_pdf_form_field_filler`: Fills form fields in PDF
+- `show_result_to_user`: Displays result to user
+- `capture_screenshot_of_window`: Captures screenshot of specified window
+
+### PDF Form Processing Example
+
+When you click the "Fill form" pill action:
+
+#### Step 1: Initial Generation
+The LLM creates initial nodes:
+- `acrobat_current_pdf_form_field_extractor` (understand what fields exist)
+- `acrobat_current_pdf_text_extractor` (get document context)
+- `get_user_personal_details` (get user's information)
+
+#### Step 2: Execution
+These nodes execute, producing live outputs:
+- Form field structure and types
+- Document content and context
+- User personal information
+
+#### Step 3: Processing Generation
+LLM creates processing nodes:
+- `llm_query` node that takes all outputs as input
+- Uses structured output schema for form filling
+
+#### Step 4: Final Generation
+LLM creates sink node:
+- `acrobat_current_pdf_form_field_filler` to actually fill the form
+
+#### Result
+A complete 6-node workflow created automatically from a single click!
+
+### Real-time Action Descriptions
+
+Each operator provides real-time feedback through action descriptions:
+
+#### Action Description System
+- **Real-time Status**: Shows current operator action in the UI
+- **Icon System**: Visual icons for different operation types:
+  - 👁️ **Eye**: Data extraction operations (PDF, form fields, user details)
+  - 🧠 **Brain**: LLM processing and generation
+  - ✏️ **Pencil**: Data modification/filling operations
+  - 📷 **Camera**: Screenshot and capture operations
+  - 🔤 **Text**: Simple text processing
+  - ⚙️ **Gear**: General processing operations
+
+#### Minimum Execution Time
+- Configurable delay (default: 0.25s) ensures users see action descriptions
+- Smooth fade in/out transitions for better UX
+
+### Available Models
+
+The `llm_query` operator supports multiple Google Gemini models:
+
+- **extra light**: `gemini-1.5-flash-lite` - Fastest, basic tasks
+- **light**: `gemini-2.0-flash-lite` - Balanced speed and quality
+- **medium**: `gemini-1.5-flash` - Good quality for most tasks
+- **good**: `gemini-2.0-flash` - High quality processing
+- **pro**: `gemini-2.5-flash` - Best quality for complex tasks
+
+### Structured Output
+
+The system automatically uses structured output for better results:
+- **Input Schema**: Each operator defines its expected input format
+- **Structured JSON**: LLM outputs are automatically formatted
+- **Type Safety**: Ensures data flows correctly between nodes
+- **Error Prevention**: Reduces errors in complex workflows
+
+### Pill Action Integration
+
+Inference graphs are fully integrated with the main application's pill action system:
+
+#### Context Detection
+- App detects PDF context with form fields
+- Automatically creates relevant pills based on context
+- Zero-configuration execution
+
+#### Smart Pill Creation
+When a PDF with form fields is detected:
+- **"Fill form" Pill**: Dynamic LLM-driven workflow
+- **"Clear form" Pill**: Direct AppleScript execution
+- **"Extract info" Pill**: Information extraction workflow
+
+### Advanced Features
+
+#### Error Handling
+- Comprehensive error handling and validation
+- Graceful degradation when operations fail
+- Detailed error messages and recovery options
+
+#### Serialization Support
+- Save and load graphs as JSON
+- Export workflows for reuse
+- Share workflows between users
+
+#### Topological Execution
+- Ensures proper dependency resolution
+- Prevents circular dependencies
+- Optimizes execution order
+
+### Configuration
+
+#### Minimum Execution Time
+```swift
+// In AppConfig.swift
+var minimumOperatorExecutionTime: TimeInterval = 0.25
+```
+
+#### Model Selection
+Choose your preferred model based on task complexity:
+- **Simple tasks**: Use "light" or "extra light" for speed
+- **Complex analysis**: Use "pro" for best quality
+- **Balanced approach**: Use "medium" or "good" for most tasks
+
+### Troubleshooting
+
+**Graph not generating?**
+- Check that your API key is correctly configured
+- Ensure you have an active internet connection
+- Verify the initial prompt is clear and specific
+
+**Execution errors?**
+- Check that required applications are running (Adobe Acrobat Pro)
+- Verify permissions are granted for screen recording
+- Review the error logs for specific issues
+
+**Performance issues?**
+- Use lighter models for faster execution
+- Reduce minimum execution time for quicker feedback
+- Close other resource-intensive applications
+
+<Card
+  title="PDF Form Processing"
+  icon="file-pdf"
+  href="/features/document-processing"
+>
+  Learn how inference graphs power advanced PDF processing
+</Card>
+
+<Card
+  title="Window Management"
+  icon="monitor"
+  href="/features/window-management"
+>
+  Discover how window tracking integrates with inference graphs
+</Card> 
