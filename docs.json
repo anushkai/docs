@@ -16,19 +16,17 @@
           {
             "group": "Getting Started",
             "pages": [
-              "index",
-              "quickstart",
-              "installation"
+              "index"
             ]
           },
           {
             "group": "Core Features",
             "pages": [
-              "features/live-mode",
-              "features/smart-analysis",
-              "features/email-assistance",
-              "features/document-processing",
-              "features/project-organization"
+              "features/context-understanding",
+              "features/cross-app-understanding",
+              "features/sentry-mode",
+              "features/todo-identification",
+              "features/knowledge-dbs"
             ]
           }
         ]
