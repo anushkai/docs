@@ -30,26 +30,6 @@
             ]
           }
         ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoints",
-            "pages": [
-              "api-reference/endpoint/assistant",
-              "api-reference/endpoint/analysis",
-              "api-reference/endpoint/documents",
-              "api-reference/endpoint/projects"
-            ]
-          }
-        ]
       }
     ],
     "global": {
