@@ -33,18 +33,7 @@
       }
     ],
     "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://ignotus.ai",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "LinkedIn",
-          "href": "https://www.linkedin.com/company/ignotus",
-          "icon": "linkedin"
-        }
-      ]
+      "anchors": []
     }
   },
   "logo": {
