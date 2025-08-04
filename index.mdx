@@ -7,18 +7,22 @@ description: "The AI assistant that lives on your desktop. Get instant help with
 
 Your AI assistant that lives on your desktop. Get instant help with anything you like. Documents, emails, tasks… you name it.
 
-<div style={{marginBottom: '24px'}}>
-  <iframe 
-    src="https://player.vimeo.com/video/1106799314?autoplay=1&amp;muted=1&amp;loop=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
-    width="100%" 
-    height="400" 
-    frameborder="0" 
-    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
-    title="hero"
-    style={{borderRadius: '8px'}}
-  ></iframe>
-</div>
+ <div style={{marginBottom: '24px'}}>
+   <video
+     width="100%"
+     height="400"
+     autoPlay={true}
+     muted={true}
+     loop={true}
+     controls={true}
+     playsInline={true}
+     preload="metadata"
+     style={{borderRadius: '8px'}}
+   >
+     <source src="https://storage.googleapis.com/ignotus-web-hosting/ignotus-hero.mp4" type="video/mp4" />
+     Your browser does not support the video tag.
+   </video>
+ </div>
 
 <Card
   title="Get Started"
